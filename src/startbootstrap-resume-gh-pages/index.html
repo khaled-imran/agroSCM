@@ -11,16 +11,15 @@
   <title>Resume - Start Bootstrap Theme</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="startbootstrap-resume-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-  <link href="startbootstrap-resume-gh-pages/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="startbootstrap-resume-gh-pages/css/resume.min.css" rel="stylesheet">
-  <link href="css/custom.css" rel="stylesheet">
+  <link href="css/resume.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,9 +27,9 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">Agro SCM</span>
+      <span class="d-block d-lg-none">Clarence Taylor</span>
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/banner.jpg" alt="">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,46 +63,13 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
-        <h1 class="mb-0">Agro
-          <span class="text-primary">SCM</span>
+        <h1 class="mb-0">Clarence
+          <span class="text-primary">Taylor</span>
         </h1>
-
-        <!-- TODO: Here we will show if the current user name and role. If not set we will show a form here to insert the data -->
-
-        <div id="AgroAddActor" style="display: none;">
-            <h1>Add Your Role</h1>
-
-            <div class="form" id="add-role-form">
-              <h2 class="form-title">Enter Details</h2>
-              <input type="text" class="input-std" id="actor_name" placeholder="Your Name">
-              <br />
-              <input type="text" class="input-std" id="actor_role" placeholder="Product Description">
-              <br />
-              Select Your Role: 
-              <select class="input-std" id="actor_role">
-                <option value="farmer">Farmer</option>
-                <option value="logistic">Logistic</option>
-                <option value="retailer">Retailer</option>
-              </select>
-              <br />
-              <button type="button" class="btn-submit" id="setvalue" onclick="App.create_actor()">Submit Details!</button>
-            </div>
-            
-          </div>
+        <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
+          <a href="mailto:name@email.com">name@email.com</a>
         </div>
-
-        <div id="AgroShowActor" style="display: none;">
-            <h1>My Info</h1>
-
-            <div class="subheading mb-5">
-              id: <span class="actor_id"></span>
-              <br/>
-              name: <span class="actor_name"></span> 
-            </div>
-          </div>
-        </div>
-        
-
+        <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
         <div class="social-icons">
           <a href="#">
             <i class="fab fa-linkedin-in"></i>
@@ -117,24 +83,6 @@
           <a href="#">
             <i class="fab fa-facebook-f"></i>
           </a>
-        </div>
-
-        <div id="AgroTemplate" style="display: none;">
-          <h1>Add a product</h1>
-
-          <div class="form" id="sign-up-form">
-            <h2 class="form-title">Enter Details</h2>
-            <input type="text" class="input-std" id="product_name" placeholder="Product Name">
-            <br />
-            <input type="text" class="input-std" id="product_description" placeholder="Product Description">
-            <br />
-            <button type="button" class="btn-submit" id="setvalue" onclick="App.create_product()">Submit Details!</button>
-          <span id="status"></span>
-          </div>
-
-          <h3>Product List</h3>
-
-          <div class="product_list"></div>
         </div>
       </div>
     </section>
@@ -338,25 +286,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="startbootstrap-resume-gh-pages/vendor/jquery/jquery.min.js"></script>
-  <script src="startbootstrap-resume-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="startbootstrap-resume-gh-pages/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="startbootstrap-resume-gh-pages/js/resume.min.js"></script>
-
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  
-  <!-- <script src="js/jquery.min.js"></script> -->
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/web3.min.js"></script>
-  <script src="js/truffle-contract.js"></script>
-  <script src="js/app.js"></script>
-
+  <script src="js/resume.min.js"></script>
 
 </body>
 
