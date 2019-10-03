@@ -5,6 +5,7 @@ contract AgroModel {
   struct Actor {
     bytes32 actorId;
     string name;
+    string role;
     address accountAddress; // Ethereum address
     string physicalAddress; // Physical address, may be separated (more costly)
     // TODO: actor certification? ISO:9001?
@@ -62,6 +63,7 @@ contract AgroModel {
 
   mapping (address => Actor) public actorAddressToActorStruct; // access an actor struct from its Eth address
   address[] public actorAddresses; // access all actor addresses
+  uint public actorsCount;
 
   mapping (bytes32 => Certification) public certificationIdToCertificationStruct; // access a version struct from a version ID
   bytes32[] public certificationIds; // access all version IDs
@@ -89,6 +91,9 @@ contract AgroModel {
       // bytes32[] _certificationsIds,
       // string _customJsonData
     ) public returns (bytes32 productId) {
+
+
+        // require(true, ‘Something bad happened’);
     
         // Generate a pseudo-random product ID
         // from the current time and the sender's address
@@ -131,6 +136,37 @@ contract AgroModel {
     }
 
     event ProductCreated(bytes32 newProductId, address indexed owner);
+
+
+
+    function createActor(
+      string memory _name,
+      string memory _role
+    ) public returns (bytes32 actorId) {
+    
+        
+        bytes32 newActorId = keccak256(abi.encodePacked(now, msg.sender));
+        actorAddressToActorStruct[msg.sender] = Actor(newActorId, _name, _role, msg.sender, '');
+        actorAddresses.push(msg.sender);
+        actorsCount++;
+        emit ActorCreated(newActorId, msg.sender);
+        return newActorId;
+    }
+
+    event ActorCreated(bytes32 newActorId, address indexed owner);
+
+
+    // function actorPresent() public returns (bool) {
+    //     if (actorAddressToActorStruct[msg.sender].actorId == 0){
+    //       return false;
+    //     } else {
+    //       return true;
+    //     }
+        
+    // }
+
+
+
 
 
 

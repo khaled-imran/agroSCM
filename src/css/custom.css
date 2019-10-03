@@ -5,3 +5,7 @@
 .text-primary {
     color: #28bf6c !important;
 }
+
+.actor_id {
+	font-size: 20px;
+}
