@@ -60,6 +60,7 @@ contract AgroModel {
 
 
   mapping (address => bytes32[]) public ownerToProductsId; // access an account's products
+  mapping (address => uint) public ownerToProductsCount; // access an account's products
 
   mapping (address => Actor) public actorAddressToActorStruct; // access an actor struct from its Eth address
   address[] public actorAddresses; // access all actor addresses
@@ -124,7 +125,11 @@ contract AgroModel {
         // Add product ID to account
         ownerToProductsId[msg.sender].push(newProductId);
 
+        ownerToProductsCount[msg.sender]++;
+        
         productsCount++;
+
+
 
         // Create initial product version
         // updateProduct(newProductId, _latitude, _longitude, _customJsonData);

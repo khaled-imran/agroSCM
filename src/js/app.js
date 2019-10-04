@@ -55,12 +55,15 @@ App = {
     App.setAccount();
     App.showActor();
     App.showProducts();
+    App.initProductDelieryForm();
   },
 
   setAccount: function(){
     web3.eth.getAccounts(function(err, account) {
       if (err === null) {
         // todo: now manually setting accounts
+        // 2 is farmer tanim
+        // 3 is delivery man imran
         var account_no = 2;
         App.account = account[account_no];
         console.log ('account------>');
@@ -105,35 +108,85 @@ App = {
 
   showProducts: function() {
     var product_list = $('.product_list');
-      App.contracts.AgroModel.deployed().
-      then(function(instance){
-        agro_instance = instance;
-        return(agro_instance);
-      })
-      .then(function(agro_instance){
-        console.log('agro_instance'); 
-        console.log(agro_instance); 
-        return agro_instance.productsCount();
+    App.contracts.AgroModel.deployed().
+    then(function(instance){
+      agro_instance = instance;
+      return(agro_instance);
+    })
+    .then(function(agro_instance){
+      console.log('agro_instance'); 
+      console.log(agro_instance); 
+      return agro_instance.productsCount();
+    })
+    .then(function(productsCount){
+      for(i = 0; i < productsCount; i++){
+        agro_instance.productIds(i)
+        .then(function(product_id){
+          agro_instance.productIdToProductStruct(product_id)
+          .then(function(product_hash){
+
+            console.log('sssssss');
+            console.log(product_hash);
+
+            if(product_list.find('#' + product_hash[0]).length){
+              product_list.find('#' + product_hash[0]).html(product_hash[3] + ' - Owner: '+ product_hash[2]);
+            } else {
+              product_list.append('<div id="'+ product_hash[0] +'">' + product_hash[3] + ' - Owner: '+ product_hash[2] +'</div>');  
+            }
+          });
+        });  
+      }
+    });
+  },
+
+  initProductDelieryForm: function(){
+    App.contracts.AgroModel.deployed().
+      then(function(agro_instance){
+        return agro_instance.ownerToProductsCount(App.account);
       })
       .then(function(productsCount){
         for(i = 0; i < productsCount; i++){
-          agro_instance.productIds(i)
+          agro_instance.ownerToProductsId(App.account, i)
           .then(function(product_id){
             agro_instance.productIdToProductStruct(product_id)
             .then(function(product_hash){
 
-              console.log('sssssss');
-              console.log(product_hash);
-
-              if(product_list.find('#' + product_hash[0]).length){
-                product_list.find('#' + product_hash[0]).html(product_hash[3] + ' - Owner: '+ product_hash[2]);
-              } else {
-                product_list.append('<div id="'+ product_hash[0] +'">' + product_hash[3] + ' - Owner: '+ product_hash[2] +'</div>');  
+              if($("#ProductDelivery .owners_products option[value='"+product_hash[0]+"']").length == 0) {
+                $('#ProductDelivery .owners_products').append(new Option(product_hash[3], product_hash[0]))
               }
+              
             });
           });  
         }
       });
+
+
+      App.contracts.AgroModel.deployed().
+      then(function(agro_instance){
+        return agro_instance.actorsCount();
+      })
+      .then(function(actorsCount){
+        for(i = 0; i < actorsCount; i++){
+          agro_instance.actorAddresses(i)
+          .then(function(actor_address){
+            agro_instance.actorAddressToActorStruct(actor_address)
+            .then(function(actor_hash){
+
+              console.log('App.account');
+              console.log(App.account);
+              console.log('actor_hash[3]');
+              console.log(actor_hash[3]);
+
+              if( (App.account !=  actor_hash[3]) && ($("#ProductDelivery .actors option[value='"+actor_hash[0]+"']").length == 0) ) {
+                $('#ProductDelivery .actors').append(new Option(actor_hash[1], actor_hash[0]))
+              }
+              
+            });
+          });  
+        }
+      });
+
+
   },
 
   // Listen for events emitted from the contract
